@@ -29,7 +29,64 @@ def extract_text_from_docx(file_bytes: bytes) -> str:
     doc = Document(BytesIO(file_bytes))
     return "\n".join([para.text for para in doc.paragraphs])
 
-
+def convert_response_to_html(text_response: str) -> str:
+    """
+    Converts a plain text/markdown response to HTML format.
+    
+    Args:
+        text_response (str): The plain text response from the LLM
+        
+    Returns:
+        str: HTML formatted response
+    """
+    if not text_response:
+        return ""
+    
+    # Split text into lines
+    lines = text_response.split('\n')
+    html_lines = []
+    in_list = False
+    
+    for line in lines:
+        line = line.strip()
+        
+        if not line:  # Empty line
+            if in_list:
+                html_lines.append('</ul>')
+                in_list = False
+            html_lines.append('<br>')
+            continue
+            
+        # Check if line starts with bullet point (- or *)
+        if re.match(r'^[-*]\s', line):
+            if not in_list:
+                html_lines.append('<ul>')
+                in_list = True
+            
+            # Extract content after bullet point
+            content = re.sub(r'^[-*]\s', '', line)
+            
+            # Make text between ** bold
+            content = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', content)
+            
+            html_lines.append(f'    <li>{content}</li>')
+            
+        else:  # Regular paragraph
+            if in_list:
+                html_lines.append('</ul>')
+                in_list = False
+                
+            # Make text between ** bold
+            line = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', line)
+            
+            # Wrap in paragraph tags
+            html_lines.append(f'<p>{line}</p>')
+    
+    # Close any remaining list
+    if in_list:
+        html_lines.append('</ul>')
+    
+    return '\n'.join(html_lines)
 
 def split_text(text, max_chunk_size=500, overlap=50):
     sentences = re.split(r'(?<=[.!?]) +', text)  # split on sentences

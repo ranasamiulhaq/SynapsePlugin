@@ -74,24 +74,7 @@ def get_Woo_model_response(user_query: str, combined_str: str, chat_history: lis
 
 7. **Give Product Link as Well:**
    - Fetch the "Product link" from the feild *Permalink* of {combined_str} and make it clickable us adding html tags.
-   
-8. **Format Response in HTML:**
-   - Format your entire response using proper HTML tags
-   - Use <p> tags for paragraphs
-   - Use <ul> and <li> tags for lists
-   - Use <strong> or <b> tags for bold text
-   - Use <a href="url" target="_blank"> tags for clickable links
-   - Use <br> tags for line breaks where needed
-   - Make the response visually appealing with proper HTML structure
 
-    Example HTML format:
-    <p>Here at Store we have several premium men's perfumes available! Based on your needs, I'd recommend trying either:</p>
-    <ul>
-        <li><strong>Product Name</strong>: Description here. <a href="product_link" target="_blank">View Product</a></li>
-        <li><strong>Another Product</strong>: Description here. <a href="product_link" target="_blank">View Product</a></li>
-    </ul>
-    <p>Would you like more information about any of these products?</p>
-    
     Do NOT include any extraneous text or greetings.  Provide only the requested information in the specified format.
     """
 

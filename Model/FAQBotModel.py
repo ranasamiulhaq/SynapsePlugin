@@ -43,24 +43,6 @@ Instructions:
 - If the "Document Context" contains multiple pieces of information, synthesize them to provide a comprehensive answer.
 - Pay close attention to any specific instructions or keywords in the "User Query".
 
-**Format Response in HTML:**
-   - Format your entire response using proper HTML tags
-   - Use <p> tags for paragraphs
-   - Use <ul> and <li> tags for lists
-   - Use <strong> or <b> tags for bold text
-   - Use <a href="url" target="_blank"> tags for clickable links
-   - Use <br> tags for line breaks where needed
-   - Make the response visually appealing with proper HTML structure
-
-    Example HTML format:
-    <p>Here at Store we have several premium men's perfumes available! Based on your needs, I'd recommend trying either:</p>
-    <ul>
-        <li><strong>Product Name</strong>: Description here. <a href="product_link" target="_blank">View Product</a></li>
-        <li><strong>Another Product</strong>: Description here. <a href="product_link" target="_blank">View Product</a></li>
-    </ul>
-    <p>Would you like more information about any of these products?</p>
-    
-    
 """
 
     data = {
