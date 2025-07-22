@@ -176,7 +176,7 @@ async def woocommerce_function(documents,userquery, chat_history):
         )
     
     print("Combined product data:\n", combined_str)
-    results = get_Woo_model_response(userquery,chat_history, combined_str)
+    results = get_Woo_model_response(userquery, combined_str, chat_history)
     
     return results  # Return a list of results
 
